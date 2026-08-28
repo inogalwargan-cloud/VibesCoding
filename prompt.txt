@@ -15,4 +15,60 @@ Cukup instruksikan secara high level
 
 Nanti document planning nya akan digunakan oleh programmer atau model yang lebih murah untuk di implementasikan
 
+============== PROMPT 2 =================
 
+buatkan issue.md yang berisi
+perencanaan untuk nanti di
+implementasikan oleh junior
+programmer atau AI model yang 
+lebih murah.
+
+isi planning nya adalah :
+
+buat table users :
+id integer auto increment
+name varchar 255 not null
+email varchar 255 not null
+password varchar 255 not null (password merupakan
+hash dari bycrypt) created_at timestamp 
+default current_timestamp
+
+buatkan API untuk regitrasi user baru
+
+Endpoint : POST /api/users
+
+dengan request body {
+  "name": "ino",
+  "email": "[EMAIL_ADDRESS]",
+  "password": "rahasia"
+}
+
+Dan return response {
+  "status": "success",
+  "message": "User registered successfully",
+  "data": {
+    "id": 1,
+    "name": "ino",
+    "email": "[EMAIL_ADDRESS]",
+    "created_at": "2026-08-29T02:53:30.697Z"
+  }
+}
+
+Dan return response error 400 jika email sudah terdaftar dengan 
+response {
+  "status": "error",
+  "message": "Email already registered",
+  "data": null
+}
+
+Struktur folder nya nanti : 
+- routes : ini berisi routing ElysiaJs
+- services : ini berisi logic aplikasi
+
+Struktur file 
+- routes : menggunakan format misal users-routs.ts
+- services : menggunakan format misal users-service.ts
+
+jelaskan tahapan yang harus dilakukan utuk mengimplementasikan
+fitur ini, anggap nanti yang mengimplementasikan junior programmer
+atau AI model yang lebih murah
