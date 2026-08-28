@@ -2,6 +2,7 @@ import { Elysia, t } from "elysia";
 import { swagger } from "@elysiajs/swagger";
 import { db, schema } from "./db";
 import { eq } from "drizzle-orm";
+import { usersRoutes } from "./routes/users-routes";
 
 const port = Number(process.env.PORT) || 3000;
 
@@ -17,6 +18,7 @@ const app = new Elysia()
       },
     })
   )
+  .use(usersRoutes)
   .get("/", () => ({
     message: "Welcome to VibesCoding API",
     documentation: "/swagger",
@@ -94,6 +96,7 @@ const app = new Elysia()
             const [result] = await db.insert(schema.users).values({
               name: body.name,
               email: body.email,
+              password: await Bun.password.hash("default_password", { algorithm: "bcrypt" }),
             });
 
             set.status = 201;
